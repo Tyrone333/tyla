@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class AuthScreen extends StatefulWidget {
@@ -51,30 +52,46 @@ class _AuthScreenState extends State<AuthScreen> {
                   return null;
                 },
               ),
-              if (_showPasswordConfirmation) const SizedBox(height: 16.0),
-              TextFormField(
-                controller: _confirmPasswordController,
-                decoration:
-                    const InputDecoration(labelText: 'Confirm Password'),
-                obscureText: true,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your password confirmation';
-                  }
-                  if (value != _passwordController.text) {
-                    return 'Passwords do not match';
-                  }
-                  return null;
-                },
-              ),
+              if (_showPasswordConfirmation)
+                Column(
+                  children: [
+                    TextFormField(
+                      controller: _confirmPasswordController,
+                      decoration:
+                          const InputDecoration(labelText: 'Confirm Password'),
+                      obscureText: true,
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'Please enter your password confirmation';
+                        }
+                        if (value != _passwordController.text) {
+                          return 'Passwords do not match';
+                        }
+                        return null;
+                      },
+                    ),
+                  ],
+                ),
               const SizedBox(height: 16.0),
               ElevatedButton(
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     if (_isLogin) {
                       // Perform login logic
+                      setState(() {
+                        FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        );
+                      });
                     } else {
                       // Perform register logic
+                      setState(() {
+                        FirebaseAuth.instance.createUserWithEmailAndPassword(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        );
+                      });
                     }
                   }
                 },
