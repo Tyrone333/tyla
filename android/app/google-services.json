@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "667454708400",
+    "project_id": "tyla-78c36",
+    "storage_bucket": "tyla-78c36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:667454708400:android:fc2be09f4d7df74e9e7975",
+        "android_client_info": {
+          "package_name": "com.example.tyla"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDV8nb5MmEOT-nEd6WrNSx5RuTefsfdWyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
